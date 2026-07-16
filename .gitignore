@@ -1,0 +1,5 @@
+# Audio files — keep local, do not push to public GitHub
+*.mp3
+*.wav
+*.ogg
+*.m4a
