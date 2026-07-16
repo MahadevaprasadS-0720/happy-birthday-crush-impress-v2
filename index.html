@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#d81b60">
+    <meta name="description" content="A special birthday surprise made just for you, with all my love 💖">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Birthday Wish for My Love 💕</title>
+
+    <!-- DNS Preconnect for faster font + CDN loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+    <!-- Google Fonts — display=swap prevents FOIT -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+
+    <!-- YouTube IFrame API — plays Khairiyat on all devices including Vercel -->
+    <script src="https://www.youtube.com/iframe_api"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- GSAP — animation core; load early -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+
+    <!-- Particles & Confetti — defer so they don't block render -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js" defer></script>
+
+    <!-- Site styles -->
+    <link rel="stylesheet" href="style.css?v=8">
+</head>
+<body>
+    <div id="particles-js"></div>
+    <div class="floating-hearts" id="floatingHearts"></div>
+    <div class="petals" id="petalsContainer"></div>
+
+    <!-- Hidden YouTube Player — Khairiyat, Chhichhore (T-Series official) -->
+    <div id="yt-player-wrap" style="position:fixed;width:1px;height:1px;opacity:0;pointer-events:none;z-index:-999;top:0;left:0;">
+        <div id="yt-player"></div>
+    </div>
+
+    <!-- Floating Music Toggle Button -->
+    <button class="music-btn" id="musicToggle" title="Toggle romantic music" onclick="toggleMusic()">
+        <span class="music-icon" id="musicIcon"><span class="color-emoji">🎵</span></span>
+        <span class="music-label">Our Song</span>
+        <div class="music-bars" id="musicBars">
+            <span></span><span></span><span></span><span></span>
+        </div>
+    </button>
+    
+    
+    <div class="container">
+        <div class="progress-bar">
+            <div class="progress" id="progressBar"></div>
+        </div>
+
+        <!-- Step 1: Dynamic Personalized Greeting -->
+        <div class="step" id="step1">
+            <div class="greeting-time" id="greetingTime"></div>
+            <h1 id="heroTitle"><span class="gradient-title">Happy Birthday, My Love!</span></h1>
+            <p id="heroPara" class="hero-para">I've created something magical just for you. <span class="color-emoji">🌸</span></p>
+            <div class="greeting-badge">
+                <span class="greeting-badge-icon"><span class="color-emoji">💌</span></span>
+                <span id="greetingMsg" class="greeting-badge-text">Something special awaits...</span>
+            </div>
+            <img src="https://png.pngtree.com/png-vector/20250422/ourmid/pngtree-cute-girl-holding-birthday-cake-smiling-cheerfully-png-image_16067658.png" style="height: 200px;width: 200px;" alt="Birthday girl" class="hero-img" decoding="async">
+            <button class="btn btn-gift" id="openGiftBtn" onclick="openGiftWithConfetti()"><span class="color-emoji">🎁</span> Open Your Gift</button>
+        </div>
+
+        <!-- Step 2: Gift Box Reveal → Name Input -->
+        <div class="step" id="step2">
+            <h2>A Special Gift For You <span class="color-emoji">🎀</span></h2>
+            <p>Something magical is waiting inside...</p>
+
+            <!-- Animated Gift Box -->
+            <div class="gift-box-wrap" id="giftBoxWrap" onclick="openGiftBox()">
+                <div class="gift-box" id="giftBox">
+                    <!-- Lid -->
+                    <div class="gift-lid">
+                        <div class="gift-ribbon-h"></div>
+                        <div class="gift-bow">
+                            <div class="bow-left"></div>
+                            <div class="bow-right"></div>
+                            <div class="bow-center"></div>
+                        </div>
+                    </div>
+                    <!-- Box Body -->
+                    <div class="gift-body">
+                        <div class="gift-ribbon-v"></div>
+                        <div class="gift-shine"></div>
+                    </div>
+                </div>
+                <p class="gift-tap-hint" id="giftTapHint"><span class="color-emoji">✨</span> Tap to unwrap!</p>
+            </div>
+
+            <!-- Hidden name form, revealed after box opens -->
+            <div class="gift-reveal-content" id="giftRevealContent">
+                <p class="reveal-msg"><span class="color-emoji">🌸</span> Who is this birthday princess?</p>
+                <input type="text" class="name-input" id="nameInput" placeholder="Enter your name, beautiful">
+                <button class="btn" onclick="saveName()">Continue <span class="color-emoji">✨</span></button>
+            </div>
+        </div>
+
+        <!-- Step 3: Heart Animation -->
+        <div class="step" id="step3">
+            <h2>For You, <span id="displayName">My Love</span></h2>
+            <p>Click on the heart to feel my love for you!</p>
+            <div class="heart" id="interactiveHeart" onclick="createHearts()"></div>
+            <div id="heartMessage" class="message-box">
+                <p>Every beat of my heart whispers your name, <span id="heartName">my love</span>.</p>
+            </div>
+            <button class="btn" onclick="nextStep()">Continue to Your Message</button>
+        </div>
+
+        <!-- Step 4: Birthday Message -->
+        <div class="step" id="step4">
+            <h2>My Special Message For You</h2>
+            <div class="photo-frame">
+                <!-- Replace with your image path -->
+                <img src="https://medias.artmajeur.com/standard/17262319_a-cutel-european-girl-full-bodycartoon-style-illustration-drawn-with-posca-markers-pretty-face-586679414-1.jpg?v=1738402496" alt="Beautiful You" loading="lazy" decoding="async">
+            </div>
+            <div id="typedMessage" class="message-box">
+                <p class="typing-effect" id="typingText"></p>
+            </div>
+            <button class="btn" onclick="nextStep()">See Your Surprise</button>
+        </div>
+
+        <!-- Step 5: Photo Slider (Memory Lane) -->
+        <div class="step" id="step5">
+            <h2>Our Special Moments <span class="color-emoji">📸</span></h2>
+            <p>A little memory lane, just for us...</p>
+
+            <div class="slider-wrap">
+                <div class="slider" id="photoSlider">
+                    <!-- Slide 1 -->
+                    <div class="slide active" data-index="0">
+                        <div class="slide-img-wrap">
+                            <img src="https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=80" alt="Memory 1" loading="lazy" decoding="async">
+                            <div class="slide-overlay">
+                                <div class="slide-caption">Our First Date <span class="color-emoji">🌹</span></div>
+                                <div class="slide-sub">The day everything changed...</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 2 -->
+                    <div class="slide" data-index="1">
+                        <div class="slide-img-wrap">
+                            <img src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=80" alt="Memory 2" loading="lazy" decoding="async">
+                            <div class="slide-overlay">
+                                <div class="slide-caption">Summer Days <span class="color-emoji">☀️</span></div>
+                                <div class="slide-sub">Golden hours with you...</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 3 -->
+                    <div class="slide" data-index="2">
+                        <div class="slide-img-wrap">
+                            <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=80" alt="Memory 3" loading="lazy" decoding="async">
+                            <div class="slide-overlay">
+                                <div class="slide-caption">Always Laughing <span class="color-emoji">😂💕</span></div>
+                                <div class="slide-sub">My favorite sound in the world...</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 4 -->
+                    <div class="slide" data-index="3">
+                        <div class="slide-img-wrap">
+                            <img src="https://images.unsplash.com/photo-1516589091380-5d8e87df6999?ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=80" alt="Memory 4" loading="lazy" decoding="async">
+                            <div class="slide-overlay">
+                                <div class="slide-caption">Just Us <span class="color-emoji">💑</span></div>
+                                <div class="slide-sub">My forever person...</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Arrows -->
+                <button class="slider-arrow slider-prev" onclick="sliderPrev()" aria-label="Previous">&#8592;</button>
+                <button class="slider-arrow slider-next" onclick="sliderNext()" aria-label="Next">&#8594;</button>
+
+                <!-- Dot indicators -->
+                <div class="slider-dots" id="sliderDots">
+                    <span class="dot active" onclick="goToSlide(0)"></span>
+                    <span class="dot" onclick="goToSlide(1)"></span>
+                    <span class="dot" onclick="goToSlide(2)"></span>
+                    <span class="dot" onclick="goToSlide(3)"></span>
+                </div>
+            </div>
+
+            <button class="btn" onclick="nextStep()">Why You're Special <span class="color-emoji">💖</span></button>
+        </div>
+
+        <!-- Step 6: 10 Reasons Why (New!) -->
+        <div class="step" id="step6">
+            <h2>10 Reasons Why Today Is All About You <span class="color-emoji">🌸</span></h2>
+            <p class="reasons-subtitle">These truths live in my heart, every single day.</p>
+
+            <div class="reasons-grid" id="reasonsGrid">
+                <div class="reason-card" data-delay="0">
+                    <div class="reason-number">01</div>
+                    <div class="reason-icon"><span class="color-emoji">✨</span></div>
+                    <div class="reason-text">Because your smile can turn any ordinary moment into something extraordinary.</div>
+                </div>
+                <div class="reason-card" data-delay="100">
+                    <div class="reason-number">02</div>
+                    <div class="reason-icon"><span class="color-emoji">🌸</span></div>
+                    <div class="reason-text">Because the way you laugh is the most beautiful sound I've ever heard.</div>
+                </div>
+                <div class="reason-card" data-delay="200">
+                    <div class="reason-number">03</div>
+                    <div class="reason-icon"><span class="color-emoji">💫</span></div>
+                    <div class="reason-text">Because you make everyone around you feel special just by being yourself.</div>
+                </div>
+                <div class="reason-card" data-delay="300">
+                    <div class="reason-number">04</div>
+                    <div class="reason-icon"><span class="color-emoji">🌹</span></div>
+                    <div class="reason-text">Because your kindness is rare and beautiful — the world needs more of you.</div>
+                </div>
+                <div class="reason-card" data-delay="400">
+                    <div class="reason-number">05</div>
+                    <div class="reason-icon"><span class="color-emoji">💎</span></div>
+                    <div class="reason-text">Because you are stronger than you think and braver than you believe.</div>
+                </div>
+                <div class="reason-card" data-delay="500">
+                    <div class="reason-number">06</div>
+                    <div class="reason-icon"><span class="color-emoji">🌙</span></div>
+                    <div class="reason-text">Because even on your darkest days, you shine brighter than you know.</div>
+                </div>
+                <div class="reason-card" data-delay="600">
+                    <div class="reason-number">07</div>
+                    <div class="reason-icon"><span class="color-emoji">🎶</span></div>
+                    <div class="reason-text">Because the way you see the world makes everything feel more magical.</div>
+                </div>
+                <div class="reason-card" data-delay="700">
+                    <div class="reason-number">08</div>
+                    <div class="reason-icon"><span class="color-emoji">🦋</span></div>
+                    <div class="reason-text">Because you've grown and bloomed in ways that fill my heart with pride.</div>
+                </div>
+                <div class="reason-card" data-delay="800">
+                    <div class="reason-number">09</div>
+                    <div class="reason-icon"><span class="color-emoji">💝</span></div>
+                    <div class="reason-text">Because the universe did something very right the day it created you.</div>
+                </div>
+                <div class="reason-card" data-delay="900">
+                    <div class="reason-number">10</div>
+                    <div class="reason-icon"><span class="color-emoji">🔥</span></div>
+                    <div class="reason-text">Because today is your birthday — and that alone deserves a worldwide celebration! <span class="color-emoji">🎉</span></div>
+                </div>
+            </div>
+
+            <button class="btn" onclick="nextStep()">Your Final Surprise <span class="color-emoji">🎉</span></button>
+        </div>
+
+        <!-- Step 7: Final Wish -->
+        <div class="step" id="step7">
+            <h1><span class="color-emoji">🎉</span> <span class="gradient-title">Happy Birthday, <span id="finalName">My Love</span>!</span> <span class="color-emoji">🎂</span></h1>
+        
+            <div class="cake-section" id="cakeSection">
+                <p class="cake-instruction">Make a wish and blow out the candles! <span class="color-emoji">🎂</span><span class="color-emoji">✨</span></p>
+                <p class="cake-subinstruction">(Tap the flames or enable mic and blow!)</p>
+                
+                <button class="mic-toggle-btn" id="micToggleBtn" onclick="initMicBlow()">
+                    <span class="color-emoji">🎙️</span> Use Microphone to Blow
+                </button>
+
+                <!-- Interactive CSS Cake -->
+                <div class="cake-container" onclick="blowOutCandles()">
+                    <div class="cake">
+                        <!-- Tier 3 (topmost / smallest) - candles go here -->
+                        <div class="cake-tier tier-3">
+                            <div class="frosting"></div>
+                            <div class="sprinkle sprinkle-1"></div>
+                            <div class="sprinkle sprinkle-2"></div>
+                            <div class="sprinkle sprinkle-3"></div>
+                            <!-- Candles sit ON top of this tier -->
+                            <div class="candles-container">
+                                <div class="candle candle-1">
+                                    <div class="flame" id="flame-1"></div>
+                                    <div class="candle-smoke" id="smoke-1"></div>
+                                </div>
+                                <div class="candle candle-2">
+                                    <div class="flame" id="flame-2"></div>
+                                    <div class="candle-smoke" id="smoke-2"></div>
+                                </div>
+                                <div class="candle candle-3">
+                                    <div class="flame" id="flame-3"></div>
+                                    <div class="candle-smoke" id="smoke-3"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Tier 2 (middle) -->
+                        <div class="cake-tier tier-2">
+                            <div class="frosting"></div>
+                            <div class="sprinkle sprinkle-4"></div>
+                            <div class="sprinkle sprinkle-5"></div>
+                            <div class="sprinkle sprinkle-6"></div>
+                        </div>
+                        <!-- Tier 1 (bottom / largest) -->
+                        <div class="cake-tier tier-1">
+                            <div class="frosting"></div>
+                            <div class="sprinkle sprinkle-7"></div>
+                            <div class="sprinkle sprinkle-8"></div>
+                            <div class="sprinkle sprinkle-9"></div>
+                        </div>
+                    </div>
+                    <!-- Cake Plate -->
+                    <div class="plate"></div>
+                </div>
+            </div>
+
+            <!-- Hidden Wish Content (Revealed after candles are blown out) -->
+            <div class="wish-reveal-content" id="wishRevealContent" style="display: none; opacity: 0;">
+                <p><span class="color-emoji">✨</span> May your day be filled with endless joy, sweet laughter, and all the love your heart can hold <span class="color-emoji">✨</span></p>
+                <p><span class="color-emoji">🌟</span> You light up my world just by being in it — like a million stars in my sky. <span class="color-emoji">🌌</span></p>
+                <p><span class="color-emoji">⏳</span> Counting every moment until I can hold you and celebrate this magical day together! <span class="color-emoji">🥰</span></p>
+                <p><span class="color-emoji">💌</span> With all my love, forever and always... <span class="color-emoji">💫</span></p>
+            
+                <div class="signature">Yours truly, <span class="color-emoji">💋</span></div>
+    
+                <!-- ✨ WHY I LOVE YOU COUNTER ✨ -->
+                <div class="love-counter-section" id="loveCounterSection">
+                    <div class="love-counter-header">
+                        <h3 class="love-counter-title">
+                            <span class="color-emoji">💕</span>
+                            <span class="gradient-title">Why I Love You</span>
+                            <span class="color-emoji">💕</span>
+                        </h3>
+                        <p class="love-counter-subtitle">Every click reveals another reason... <span class="color-emoji">🌸</span></p>
+                    </div>
+
+                    <!-- Reason Card -->
+                    <div class="love-reason-card" id="loveReasonCard">
+                        <div class="love-reason-sparkles" id="loveSparkles">
+                            <span class="sparkle-dot s1"></span>
+                            <span class="sparkle-dot s2"></span>
+                            <span class="sparkle-dot s3"></span>
+                            <span class="sparkle-dot s4"></span>
+                            <span class="sparkle-dot s5"></span>
+                            <span class="sparkle-dot s6"></span>
+                        </div>
+                        <div class="love-reason-number" id="loveReasonNumber">
+                            <span class="color-emoji">💖</span>
+                        </div>
+                        <p class="love-reason-text" id="loveReasonText">
+                            Press the heart to discover why I love you...
+                        </p>
+                        <div class="love-reason-quote-mark">"</div>
+                    </div>
+
+                    <!-- Counter progress -->
+                    <div class="love-counter-progress" id="loveCounterProgress" style="display:none;">
+                        <span class="love-counter-label">Reason <strong id="loveCurrentNum">0</strong> of <strong>15</strong></span>
+                        <div class="love-progress-bar-wrap">
+                            <div class="love-progress-bar-fill" id="loveProgressFill"></div>
+                        </div>
+                        <div class="love-dots" id="loveDots">
+                            <!-- Dots injected by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Heart Button -->
+                    <button class="love-heart-btn" id="loveHeartBtn" onclick="revealNextReason()">
+                        <span class="love-heart-icon">
+                            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                            </svg>
+                        </span>
+                        <span class="love-btn-text" id="loveBtnText">Reveal a Reason <span class="color-emoji">✨</span></span>
+                    </button>
+
+                    <!-- Completion celebration -->
+                    <div class="love-complete-msg" id="loveCompleteMsg" style="display:none;">
+                        <div class="love-complete-icon"><span class="color-emoji">🎉</span></div>
+                        <p class="love-complete-text">You've unlocked all 15 reasons! <span class="color-emoji">💝</span><br>
+                        <small>And there are still a million more I couldn't fit on this page...</small></p>
+                        <button class="love-restart-btn" onclick="restartLoveCounter()">
+                            <span class="color-emoji">🔄</span> Read Again
+                        </button>
+                    </div>
+                </div>
+
+                <!-- "Open When" Digital Letters Section -->
+                <div class="open-when-section">
+                    <h3 class="open-when-title"><span class="color-emoji">💌</span> Open When...</h3>
+                    <p class="open-when-subtitle">Letters for the days ahead. Open them whenever you need a little piece of my heart. <span class="color-emoji">🌸</span></p>
+                    <div class="open-when-grid">
+                        <button class="open-when-card" onclick="openLetter('smile')">
+                            <span class="open-when-icon"><span class="color-emoji">😊</span></span>
+                            <span class="open-when-label">You need a smile</span>
+                        </button>
+                        <button class="open-when-card" onclick="openLetter('miss')">
+                            <span class="open-when-icon"><span class="color-emoji">💖</span></span>
+                            <span class="open-when-label">You miss me</span>
+                        </button>
+                        <button class="open-when-card" onclick="openLetter('motivation')">
+                            <span class="open-when-icon"><span class="color-emoji">💪</span></span>
+                            <span class="open-when-label">You need motivation</span>
+                        </button>
+                        <button class="open-when-card" onclick="openLetter('comfort')">
+                            <span class="open-when-icon"><span class="color-emoji">🌧️</span></span>
+                            <span class="open-when-label">You have a bad day</span>
+                        </button>
+                    </div>
+                </div>
+            
+                <!-- Future Date Button -->
+                <button class="btn btn-adventure" id="adventureBtn" onclick="openAdventurePanel()">
+                    <span class="color-emoji">🗺️</span> Plan Our Next Adventure
+                </button>
+            
+                <div class="social-share">
+                    <div class="social-icon" onclick="shareOnSocial('facebook')" title="Share on Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </div>
+                    <div class="social-icon" onclick="shareOnSocial('twitter')" title="Share on Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </div>
+                    <div class="social-icon" onclick="shareOnSocial('whatsapp')" title="Share on WhatsApp">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <!-- Future Date Adventure Panel (Modal) -->
+    <div class="adventure-overlay" id="adventureOverlay" onclick="closeAdventurePanel()"></div>
+    <div class="adventure-panel" id="adventurePanel">
+        <button class="adventure-close" onclick="closeAdventurePanel()" aria-label="Close">&times;</button>
+        <div class="adventure-header">
+            <div class="adventure-emoji"><span class="color-emoji">🗺️</span></div>
+            <h2>Our Next Chapter</h2>
+            <p class="adventure-intro">Every great love story has more pages to write. Let's plan something wonderful together...</p>
+        </div>
+
+        <!-- Suggested Date Ideas -->
+        <div class="date-ideas">
+            <div class="date-idea-card" onclick="selectIdea(this)">
+                <span class="date-idea-icon"><span class="color-emoji">🌅</span></span>
+                <span class="date-idea-label">Sunset Picnic</span>
+            </div>
+            <div class="date-idea-card" onclick="selectIdea(this)">
+                <span class="date-idea-icon"><span class="color-emoji">🎬</span></span>
+                <span class="date-idea-label">Movie Night</span>
+            </div>
+            <div class="date-idea-card" onclick="selectIdea(this)">
+                <span class="date-idea-icon"><span class="color-emoji">🍝</span></span>
+                <span class="date-idea-label">Candlelit Dinner</span>
+            </div>
+            <div class="date-idea-card" onclick="selectIdea(this)">
+                <span class="date-idea-icon"><span class="color-emoji">🌊</span></span>
+                <span class="date-idea-label">Beach Trip</span>
+            </div>
+            <div class="date-idea-card" onclick="selectIdea(this)">
+                <span class="date-idea-icon"><span class="color-emoji">🎡</span></span>
+                <span class="date-idea-label">Theme Park Day</span>
+            </div>
+            <div class="date-idea-card" onclick="selectIdea(this)">
+                <span class="date-idea-icon"><span class="color-emoji">☕</span></span>
+                <span class="date-idea-label">Cozy Café Date</span>
+            </div>
+            <div class="date-idea-card" onclick="selectIdea(this)">
+                <span class="date-idea-icon"><span class="color-emoji">🌿</span></span>
+                <span class="date-idea-label">Nature Hike</span>
+            </div>
+            <div class="date-idea-card" onclick="selectIdea(this)">
+                <span class="date-idea-icon"><span class="color-emoji">🎨</span></span>
+                <span class="date-idea-label">Paint & Sip</span>
+            </div>
+        </div>
+
+        <div class="adventure-form">
+            <label class="adventure-label"><span class="color-emoji">📅</span> When should we make it happen?</label>
+            <input type="date" class="adventure-date-input" id="adventureDateInput">
+
+            <label class="adventure-label"><span class="color-emoji">💌</span> Your message to her</label>
+            <textarea class="adventure-textarea" id="adventureMessage" placeholder="Write something sweet... e.g. I've been dreaming of this date with you. Let's make it the most magical day ever 🌸"></textarea>
+
+            <button class="btn adventure-submit-btn" onclick="sendAdventure()">Send with Love <span class="color-emoji">💌</span></button>
+        </div>
+
+        <!-- Success state -->
+        <div class="adventure-success" id="adventureSuccess">
+            <div class="success-heart"><span class="color-emoji">💖</span></div>
+            <h3>Promise Made!</h3>
+            <p id="adventureSuccessMsg">Get ready for the most magical adventure, my love! <span class="color-emoji">🌟</span></p>
+        </div>
+    </div>
+
+    <!-- "Open When" Letters Modal -->
+    <div class="letter-overlay" id="letterOverlay" onclick="closeLetter()"></div>
+    <div class="letter-modal" id="letterModal">
+        <div class="envelope-wrapper" id="envelopeWrapper">
+            <div class="envelope">
+                <div class="flap" id="envelopeFlap"></div>
+                <div class="pocket"></div>
+                <div class="letter-sheet" id="letterSheet">
+                    <button class="letter-close" onclick="closeLetter()" aria-label="Close letter">&times;</button>
+                    <div class="letter-content">
+                        <p class="letter-date" id="letterDate">Today <span class="color-emoji">🌸</span></p>
+                        <div class="letter-text" id="letterText"></div>
+                        <p class="letter-signature">Always yours, <span class="color-emoji">💖</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  <script src="script.js?v=7" defer></script>
+</body>
+</html>
