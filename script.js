@@ -724,31 +724,50 @@ function toggleMusic() {
     const btn = document.getElementById('musicToggle');
     const icon = document.getElementById('musicIcon');
     const bars = document.getElementById('musicBars');
+    const audio = document.getElementById('bgMusic');
 
-    if (!ytReady || !ytPlayer) return;
+    // 1. If YouTube is ready, use YouTube player
+    if (ytReady && ytPlayer) {
+        if (isMusicPlaying) {
+            ytPlayer.pauseVideo();
+            isMusicPlaying = false;
+            if (icon) icon.textContent = '🎵';
+            if (bars) bars.classList.remove('playing');
+            if (btn) btn.classList.remove('playing');
+            if (btn) gsap.to(btn, { scale: 0.92, duration: 0.15, yoyo: true, repeat: 1, ease: 'power1.inOut' });
+        } else {
+            // Stop local audio if it's playing
+            if (audio) audio.pause();
+            
+            ytPlayer.setVolume(0);
+            ytPlayer.playVideo();
+            isMusicPlaying = true;
+            if (icon) icon.textContent = '🎶';
+            if (bars) bars.classList.add('playing');
+            if (btn) btn.classList.add('playing');
 
-    if (isMusicPlaying) {
-        ytPlayer.pauseVideo();
-        // MUSIC TOGGLE — play/pause Khairiyat Happy .mp3
-        // =====================================================
-        function toggleMusic() {
-            const audio = document.getElementById('bgMusic');
-            const btn = document.getElementById('musicToggle');
-            const icon = document.getElementById('musicIcon');
-            const bars = document.getElementById('musicBars');
+            let vol = 0;
+            const fadeIn = setInterval(() => {
+                vol = Math.min(vol + 5, 60);
+                ytPlayer.setVolume(vol);
+                if (vol >= 60) clearInterval(fadeIn);
+            }, 80);
 
-            if (!audio) return;
-
-            if (isMusicPlaying) {
-                audio.pause();
-                isMusicPlaying = false;
-                if (icon) icon.textContent = '🎵';
-                if (bars) bars.classList.remove('playing');
-                if (btn) btn.classList.remove('playing');
-                if (btn) gsap.to(btn, { scale: 0.92, duration: 0.15, yoyo: true, repeat: 1, ease: 'power1.inOut' });
-            } else {
-                ytPlayer.setVolume(0);
-                ytPlayer.playVideo();
+            if (btn) gsap.fromTo(btn, { scale: 0.9 }, { scale: 1, duration: 0.4, ease: 'elastic.out(1, 0.5)' });
+        }
+    } 
+    // 2. Otherwise fallback to local MP3 player
+    else if (audio) {
+        if (isMusicPlaying) {
+            audio.pause();
+            isMusicPlaying = false;
+            if (icon) icon.textContent = '🎵';
+            if (bars) bars.classList.remove('playing');
+            if (btn) btn.classList.remove('playing');
+            if (btn) gsap.to(btn, { scale: 0.92, duration: 0.15, yoyo: true, repeat: 1, ease: 'power1.inOut' });
+        } else {
+            audio.volume = 0;
+            audio.play().then(() => {
                 isMusicPlaying = true;
                 if (icon) icon.textContent = '🎶';
                 if (bars) bars.classList.add('playing');
@@ -756,15 +775,18 @@ function toggleMusic() {
 
                 let vol = 0;
                 const fadeIn = setInterval(() => {
-                    vol = Math.min(vol + 5, 60);
-                    ytPlayer.setVolume(vol);
-                    if (vol >= 60) clearInterval(fadeIn);
+                    vol = Math.min(vol + 0.05, 0.65);
+                    audio.volume = vol;
+                    if (vol >= 0.65) clearInterval(fadeIn);
                 }, 80);
 
                 if (btn) gsap.fromTo(btn, { scale: 0.9 }, { scale: 1, duration: 0.4, ease: 'elastic.out(1, 0.5)' });
-
-            }
+            }).catch((err) => {
+                console.warn('Local audio play blocked or failed:', err);
+            });
         }
+    }
+}
 
         // =====================================================
         // FEATURE 1: DYNAMIC PERSONALIZED GREETING
