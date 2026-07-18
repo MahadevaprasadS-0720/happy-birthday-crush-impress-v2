@@ -747,7 +747,6 @@ function toggleMusic() {
                 if (btn) btn.classList.remove('playing');
                 if (btn) gsap.to(btn, { scale: 0.92, duration: 0.15, yoyo: true, repeat: 1, ease: 'power1.inOut' });
             } else {
-<<<<<<< HEAD
                 ytPlayer.setVolume(0);
                 ytPlayer.playVideo();
                 isMusicPlaying = true;
@@ -763,26 +762,7 @@ function toggleMusic() {
                 }, 80);
 
                 if (btn) gsap.fromTo(btn, { scale: 0.9 }, { scale: 1, duration: 0.4, ease: 'elastic.out(1, 0.5)' });
-=======
-        audio.volume = 0;
-        audio.play().then(() => {
-            isMusicPlaying = true;
-            if (icon) icon.textContent = '🎶';
-            if (bars) bars.classList.add('playing');
-            if (btn)  btn.classList.add('playing');
 
-            let vol = 0;
-            const fadeIn = setInterval(() => {
-                vol = Math.min(vol + 0.05, 0.65);
-                audio.volume = vol;
-                if (vol >= 0.65) clearInterval(fadeIn);
-            }, 80);
-
-            if (btn) gsap.fromTo(btn, { scale: 0.9 }, { scale: 1, duration: 0.4, ease: 'elastic.out(1, 0.5)' });
-        }).catch(() => {
-            console.warn('Autoplay blocked. Click Our Song to play.');
-        });
->>>>>>> 33025c3 (Add Khairiyat Happy MP3 + final project)
             }
         }
 
@@ -1614,4 +1594,3 @@ function toggleMusic() {
             }
             if (btnText) btnText.innerHTML = 'Reveal a Reason <span class="color-emoji">✨</span>';
         }
-
