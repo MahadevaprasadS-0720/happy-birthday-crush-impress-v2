@@ -1126,8 +1126,18 @@ function toggleMusic() {
             // Build a pretty date string
             let dateStr = 'soon';
             if (dateInput && dateInput.value) {
-                const d = new Date(dateInput.value + 'T00:00:00');
-                dateStr = d.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+                const parts = dateInput.value.split('-');
+                if (parts.length === 3) {
+                    const d = new Date(parts[0], parts[1] - 1, parts[2]);
+                    if (!isNaN(d.getTime())) {
+                        dateStr = d.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+                    }
+                } else {
+                    const d = new Date(dateInput.value);
+                    if (!isNaN(d.getTime())) {
+                        dateStr = d.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+                    }
+                }
             }
 
             const ideaLabel = selectedDateIdea ? `a ${selectedDateIdea}` : 'something magical';

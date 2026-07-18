@@ -668,7 +668,7 @@ p {
         transform: translateY(0);
     }
     .date-ideas {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
         gap: 8px;
     }
     .date-idea-card { padding: 10px 8px; border-radius: 12px; }
@@ -1361,7 +1361,7 @@ p {
 
 .reasons-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 14px;
     width: 100%;
     max-width: 660px;
@@ -1504,7 +1504,7 @@ p {
 
 .date-ideas {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
     gap: 10px;
     margin-bottom: 22px;
 }
