@@ -701,7 +701,6 @@ function openGiftWithConfetti() {
 }
 
 // =====================================================
-<<<<<<< HEAD
 // YOUTUBE IFRAME API — Khairiyat (Chhichhore)
 // =====================================================
 function onYouTubeIframeAPIReady() {
@@ -730,42 +729,40 @@ function toggleMusic() {
 
     if (isMusicPlaying) {
         ytPlayer.pauseVideo();
-=======
-// MUSIC TOGGLE — play/pause Khairiyat Happy .mp3
-// =====================================================
-function toggleMusic() {
-    const audio = document.getElementById('bgMusic');
-    const btn   = document.getElementById('musicToggle');
-    const icon  = document.getElementById('musicIcon');
-    const bars  = document.getElementById('musicBars');
+        // MUSIC TOGGLE — play/pause Khairiyat Happy .mp3
+        // =====================================================
+        function toggleMusic() {
+            const audio = document.getElementById('bgMusic');
+            const btn = document.getElementById('musicToggle');
+            const icon = document.getElementById('musicIcon');
+            const bars = document.getElementById('musicBars');
 
-    if (!audio) return;
+            if (!audio) return;
 
-    if (isMusicPlaying) {
-        audio.pause();
->>>>>>> 33025c3 (Add Khairiyat Happy MP3 + final project)
-        isMusicPlaying = false;
-        if (icon) icon.textContent = '🎵';
-        if (bars) bars.classList.remove('playing');
-        if (btn) btn.classList.remove('playing');
-        if (btn) gsap.to(btn, { scale: 0.92, duration: 0.15, yoyo: true, repeat: 1, ease: 'power1.inOut' });
-    } else {
+            if (isMusicPlaying) {
+                audio.pause();
+                isMusicPlaying = false;
+                if (icon) icon.textContent = '🎵';
+                if (bars) bars.classList.remove('playing');
+                if (btn) btn.classList.remove('playing');
+                if (btn) gsap.to(btn, { scale: 0.92, duration: 0.15, yoyo: true, repeat: 1, ease: 'power1.inOut' });
+            } else {
 <<<<<<< HEAD
-        ytPlayer.setVolume(0);
-        ytPlayer.playVideo();
-        isMusicPlaying = true;
-        if (icon) icon.textContent = '🎶';
-        if (bars) bars.classList.add('playing');
-        if (btn) btn.classList.add('playing');
+                ytPlayer.setVolume(0);
+                ytPlayer.playVideo();
+                isMusicPlaying = true;
+                if (icon) icon.textContent = '🎶';
+                if (bars) bars.classList.add('playing');
+                if (btn) btn.classList.add('playing');
 
-        let vol = 0;
-        const fadeIn = setInterval(() => {
-            vol = Math.min(vol + 5, 60);
-            ytPlayer.setVolume(vol);
-            if (vol >= 60) clearInterval(fadeIn);
-        }, 80);
+                let vol = 0;
+                const fadeIn = setInterval(() => {
+                    vol = Math.min(vol + 5, 60);
+                    ytPlayer.setVolume(vol);
+                    if (vol >= 60) clearInterval(fadeIn);
+                }, 80);
 
-        if (btn) gsap.fromTo(btn, { scale: 0.9 }, { scale: 1, duration: 0.4, ease: 'elastic.out(1, 0.5)' });
+                if (btn) gsap.fromTo(btn, { scale: 0.9 }, { scale: 1, duration: 0.4, ease: 'elastic.out(1, 0.5)' });
 =======
         audio.volume = 0;
         audio.play().then(() => {
@@ -786,404 +783,404 @@ function toggleMusic() {
             console.warn('Autoplay blocked. Click Our Song to play.');
         });
 >>>>>>> 33025c3 (Add Khairiyat Happy MP3 + final project)
-    }
-}
-
-// =====================================================
-// FEATURE 1: DYNAMIC PERSONALIZED GREETING
-// =====================================================
-function initDynamicGreeting() {
-    const now = new Date();
-    const hour = now.getHours();
-    const minutes = now.getMinutes().toString().padStart(2, '0');
-    const ampm = hour >= 12 ? 'PM' : 'AM';
-    const h12 = ((hour % 12) || 12);
-    const timeStr = `${h12}:${minutes} ${ampm}`;
-
-    // Time-based greeting
-    let timeLabel;
-    if (hour < 5) timeLabel = '🌙 Late Night';
-    else if (hour < 12) timeLabel = '🌅 Good Morning';
-    else if (hour < 17) timeLabel = '☀️ Good Afternoon';
-    else if (hour < 20) timeLabel = '🌇 Good Evening';
-    else timeLabel = '🌙 Good Night';
-
-    // Time-specific personalized badge messages
-    const msgs = {
-        morning: 'The magic begins at ' + timeStr + ' for the most special girl ✨',
-        afternoon: 'This beautiful afternoon at ' + timeStr + ' is all yours, princess 🌸',
-        evening: 'The stars are out early at ' + timeStr + ' — just for you 💫',
-        night: 'Even at ' + timeStr + ', my heart beats only for you 💖',
-    };
-
-    let msg;
-    if (hour < 12) msg = msgs.morning;
-    else if (hour < 17) msg = msgs.afternoon;
-    else if (hour < 20) msg = msgs.evening;
-    else msg = msgs.night;
-
-    // Populate elements
-    const greetingTimeEl = document.getElementById('greetingTime');
-    const greetingMsgEl = document.getElementById('greetingMsg');
-
-    if (greetingTimeEl) {
-        greetingTimeEl.textContent = `${timeLabel}  ·  ${timeStr}`;
-    }
-    if (greetingMsgEl) {
-        greetingMsgEl.textContent = msg;
-    }
-
-    // Tick the time display every second
-    setInterval(() => {
-        const n = new Date();
-        const h = n.getHours();
-        const m = n.getMinutes().toString().padStart(2, '0');
-        const s = n.getSeconds().toString().padStart(2, '0');
-        const ap = h >= 12 ? 'PM' : 'AM';
-        const h12 = ((h % 12) || 12);
-        if (greetingTimeEl) {
-            greetingTimeEl.textContent = `${timeLabel}  ·  ${h12}:${m}:${s} ${ap}`;
+            }
         }
-    }, 1000);
-}
 
-// =====================================================
-// FEATURE 2: GIFT BOX REVEAL
-// =====================================================
-let giftBoxOpened = false;
+        // =====================================================
+        // FEATURE 1: DYNAMIC PERSONALIZED GREETING
+        // =====================================================
+        function initDynamicGreeting() {
+            const now = new Date();
+            const hour = now.getHours();
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const ampm = hour >= 12 ? 'PM' : 'AM';
+            const h12 = ((hour % 12) || 12);
+            const timeStr = `${h12}:${minutes} ${ampm}`;
 
-function openGiftBox() {
-    if (giftBoxOpened) return;
-    giftBoxOpened = true;
+            // Time-based greeting
+            let timeLabel;
+            if (hour < 5) timeLabel = '🌙 Late Night';
+            else if (hour < 12) timeLabel = '🌅 Good Morning';
+            else if (hour < 17) timeLabel = '☀️ Good Afternoon';
+            else if (hour < 20) timeLabel = '🌇 Good Evening';
+            else timeLabel = '🌙 Good Night';
 
-    const lid = document.querySelector('.gift-lid');
-    const hint = document.getElementById('giftTapHint');
-    const wrap = document.getElementById('giftBoxWrap');
-    const reveal = document.getElementById('giftRevealContent');
-    const giftBox = document.getElementById('giftBox');
+            // Time-specific personalized badge messages
+            const msgs = {
+                morning: 'The magic begins at ' + timeStr + ' for the most special girl ✨',
+                afternoon: 'This beautiful afternoon at ' + timeStr + ' is all yours, princess 🌸',
+                evening: 'The stars are out early at ' + timeStr + ' — just for you 💫',
+                night: 'Even at ' + timeStr + ', my heart beats only for you 💖',
+            };
 
-    // 1. Stop the wiggle animation, do a big bounce pop
-    if (giftBox) {
-        giftBox.style.animation = 'none';
-        gsap.to(giftBox, {
-            scale: 1.12,
-            duration: 0.18,
-            yoyo: true,
-            repeat: 1,
-            ease: 'power2.out',
-        });
-    }
+            let msg;
+            if (hour < 12) msg = msgs.morning;
+            else if (hour < 17) msg = msgs.afternoon;
+            else if (hour < 20) msg = msgs.evening;
+            else msg = msgs.night;
 
-    // 2. Fly lid off
-    setTimeout(() => {
-        if (lid) lid.classList.add('open');
+            // Populate elements
+            const greetingTimeEl = document.getElementById('greetingTime');
+            const greetingMsgEl = document.getElementById('greetingMsg');
 
-        // Sparkle confetti burst from box
-        confetti({
-            particleCount: 60,
-            spread: 70,
-            startVelocity: 35,
-            origin: { x: 0.5, y: 0.55 },
-            colors: ['#b76e79', '#e91e8c', '#ff4081', '#f8bbd0', '#ffffff', '#ffd6e0'],
-            scalar: 0.85,
-            ticks: 200,
-        });
-    }, 200);
+            if (greetingTimeEl) {
+                greetingTimeEl.textContent = `${timeLabel}  ·  ${timeStr}`;
+            }
+            if (greetingMsgEl) {
+                greetingMsgEl.textContent = msg;
+            }
 
-    // 3. Fade out hint text
-    if (hint) {
-        setTimeout(() => { hint.style.opacity = '0'; hint.style.pointerEvents = 'none'; }, 300);
-    }
-
-    // 4. Slide the box up & reveal form
-    setTimeout(() => {
-        if (wrap) {
-            gsap.to(wrap, {
-                y: -20,
-                opacity: 0,
-                duration: 0.55,
-                ease: 'power2.in',
-                onComplete: () => {
-                    wrap.style.display = 'none';
-                    // Show name form with smooth transition
-                    if (reveal) {
-                        reveal.style.display = 'flex';
-                        // Force reflow, then add visible class for CSS transition
-                        requestAnimationFrame(() => {
-                            requestAnimationFrame(() => {
-                                reveal.classList.add('visible');
-                                // Focus input
-                                const inp = document.getElementById('nameInput');
-                                if (inp) inp.focus();
-                            });
-                        });
-                    }
+            // Tick the time display every second
+            setInterval(() => {
+                const n = new Date();
+                const h = n.getHours();
+                const m = n.getMinutes().toString().padStart(2, '0');
+                const s = n.getSeconds().toString().padStart(2, '0');
+                const ap = h >= 12 ? 'PM' : 'AM';
+                const h12 = ((h % 12) || 12);
+                if (greetingTimeEl) {
+                    greetingTimeEl.textContent = `${timeLabel}  ·  ${h12}:${m}:${s} ${ap}`;
                 }
+            }, 1000);
+        }
+
+        // =====================================================
+        // FEATURE 2: GIFT BOX REVEAL
+        // =====================================================
+        let giftBoxOpened = false;
+
+        function openGiftBox() {
+            if (giftBoxOpened) return;
+            giftBoxOpened = true;
+
+            const lid = document.querySelector('.gift-lid');
+            const hint = document.getElementById('giftTapHint');
+            const wrap = document.getElementById('giftBoxWrap');
+            const reveal = document.getElementById('giftRevealContent');
+            const giftBox = document.getElementById('giftBox');
+
+            // 1. Stop the wiggle animation, do a big bounce pop
+            if (giftBox) {
+                giftBox.style.animation = 'none';
+                gsap.to(giftBox, {
+                    scale: 1.12,
+                    duration: 0.18,
+                    yoyo: true,
+                    repeat: 1,
+                    ease: 'power2.out',
+                });
+            }
+
+            // 2. Fly lid off
+            setTimeout(() => {
+                if (lid) lid.classList.add('open');
+
+                // Sparkle confetti burst from box
+                confetti({
+                    particleCount: 60,
+                    spread: 70,
+                    startVelocity: 35,
+                    origin: { x: 0.5, y: 0.55 },
+                    colors: ['#b76e79', '#e91e8c', '#ff4081', '#f8bbd0', '#ffffff', '#ffd6e0'],
+                    scalar: 0.85,
+                    ticks: 200,
+                });
+            }, 200);
+
+            // 3. Fade out hint text
+            if (hint) {
+                setTimeout(() => { hint.style.opacity = '0'; hint.style.pointerEvents = 'none'; }, 300);
+            }
+
+            // 4. Slide the box up & reveal form
+            setTimeout(() => {
+                if (wrap) {
+                    gsap.to(wrap, {
+                        y: -20,
+                        opacity: 0,
+                        duration: 0.55,
+                        ease: 'power2.in',
+                        onComplete: () => {
+                            wrap.style.display = 'none';
+                            // Show name form with smooth transition
+                            if (reveal) {
+                                reveal.style.display = 'flex';
+                                // Force reflow, then add visible class for CSS transition
+                                requestAnimationFrame(() => {
+                                    requestAnimationFrame(() => {
+                                        reveal.classList.add('visible');
+                                        // Focus input
+                                        const inp = document.getElementById('nameInput');
+                                        if (inp) inp.focus();
+                                    });
+                                });
+                            }
+                        }
+                    });
+                }
+            }, 900);
+        }
+
+        // =====================================================
+        // FEATURE 3: PHOTO SLIDER
+        // =====================================================
+        let currentSlide = 0;
+        let totalSlides = 0;
+        let sliderInterval = null;
+        const SLIDE_DURATION = 4000; // ms between auto-advance
+
+        function initSlider() {
+            const slides = document.querySelectorAll('.slide');
+            totalSlides = slides.length;
+            if (totalSlides === 0) return;
+
+            // Reset to first slide
+            goToSlide(0);
+
+            // Start auto-play (only when on step 5)
+            // We'll call startSliderAuto() from showStep(5)
+        }
+
+        function startSliderAuto() {
+            stopSliderAuto();
+            sliderInterval = setInterval(() => {
+                goToSlide((currentSlide + 1) % totalSlides);
+            }, SLIDE_DURATION);
+        }
+
+        function stopSliderAuto() {
+            if (sliderInterval) {
+                clearInterval(sliderInterval);
+                sliderInterval = null;
+            }
+        }
+
+        function goToSlide(index) {
+            const slides = document.querySelectorAll('.slide');
+            const dots = document.querySelectorAll('.dot');
+            if (slides.length === 0) return;
+
+            // Clamp
+            index = ((index % slides.length) + slides.length) % slides.length;
+
+            // Remove active from current
+            if (slides[currentSlide]) slides[currentSlide].classList.remove('active');
+            if (dots[currentSlide]) dots[currentSlide].classList.remove('active');
+
+            // Set new active
+            currentSlide = index;
+            if (slides[currentSlide]) slides[currentSlide].classList.add('active');
+            if (dots[currentSlide]) dots[currentSlide].classList.add('active');
+        }
+
+        function sliderNext() {
+            stopSliderAuto();
+            goToSlide(currentSlide + 1);
+            startSliderAuto();
+        }
+
+        function sliderPrev() {
+            stopSliderAuto();
+            goToSlide(currentSlide - 1);
+            startSliderAuto();
+        }
+
+        // =====================================================
+        // FEATURE 4a: ANIMATE "10 REASONS WHY" CARDS
+        // =====================================================
+        function animateReasonCards() {
+            const cards = document.querySelectorAll('.reason-card');
+            if (cards.length === 0) return;
+
+            // Reset first
+            cards.forEach(card => {
+                gsap.set(card, { opacity: 0, y: 40, scale: 0.92 });
             });
+
+            // Stagger each card in
+            cards.forEach((card, i) => {
+                const delay = parseInt(card.dataset.delay || 0) / 1000;
+                gsap.to(card, {
+                    opacity: 1,
+                    y: 0,
+                    scale: 1,
+                    duration: 0.55,
+                    delay: delay + 0.2,
+                    ease: 'back.out(1.6)',
+                });
+            });
+
+            // Small confetti burst when all cards are revealed
+            setTimeout(() => {
+                confetti({
+                    particleCount: 40,
+                    spread: 65,
+                    startVelocity: 28,
+                    origin: { x: 0.5, y: 0.4 },
+                    colors: ['#d81b60', '#f06292', '#f8bbd0', '#ffffff', '#ff4081'],
+                    scalar: 0.8,
+                    ticks: 160,
+                });
+            }, 1400);
         }
-    }, 900);
-}
 
-// =====================================================
-// FEATURE 3: PHOTO SLIDER
-// =====================================================
-let currentSlide = 0;
-let totalSlides = 0;
-let sliderInterval = null;
-const SLIDE_DURATION = 4000; // ms between auto-advance
+        // =====================================================
+        // FEATURE 4b: ADVENTURE PANEL (FUTURE DATE PLANNER)
+        // =====================================================
+        let selectedDateIdea = '';
 
-function initSlider() {
-    const slides = document.querySelectorAll('.slide');
-    totalSlides = slides.length;
-    if (totalSlides === 0) return;
+        function openAdventurePanel() {
+            const overlay = document.getElementById('adventureOverlay');
+            const panel = document.getElementById('adventurePanel');
+            const success = document.getElementById('adventureSuccess');
+            const form = document.querySelector('.adventure-form');
 
-    // Reset to first slide
-    goToSlide(0);
+            // Reset state
+            if (success) {
+                success.style.display = 'none';
+                success.style.opacity = '1';
+                success.style.transform = 'none';
+            }
+            if (form) {
+                form.style.display = 'flex';
+                form.style.opacity = '1';
+                form.style.transform = 'none';
+            }
+            document.querySelectorAll('.date-idea-card').forEach(c => c.classList.remove('selected'));
+            selectedDateIdea = '';
 
-    // Start auto-play (only when on step 5)
-    // We'll call startSliderAuto() from showStep(5)
-}
+            // Set min date to today
+            const dateInput = document.getElementById('adventureDateInput');
+            if (dateInput) {
+                const today = new Date().toISOString().split('T')[0];
+                dateInput.setAttribute('min', today);
+            }
 
-function startSliderAuto() {
-    stopSliderAuto();
-    sliderInterval = setInterval(() => {
-        goToSlide((currentSlide + 1) % totalSlides);
-    }, SLIDE_DURATION);
-}
+            if (overlay) {
+                overlay.style.display = 'block';
+                requestAnimationFrame(() => overlay.classList.add('visible'));
+            }
+            if (panel) {
+                panel.style.display = 'flex';
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => panel.classList.add('open'));
+                });
+            }
 
-function stopSliderAuto() {
-    if (sliderInterval) {
-        clearInterval(sliderInterval);
-        sliderInterval = null;
-    }
-}
-
-function goToSlide(index) {
-    const slides = document.querySelectorAll('.slide');
-    const dots = document.querySelectorAll('.dot');
-    if (slides.length === 0) return;
-
-    // Clamp
-    index = ((index % slides.length) + slides.length) % slides.length;
-
-    // Remove active from current
-    if (slides[currentSlide]) slides[currentSlide].classList.remove('active');
-    if (dots[currentSlide]) dots[currentSlide].classList.remove('active');
-
-    // Set new active
-    currentSlide = index;
-    if (slides[currentSlide]) slides[currentSlide].classList.add('active');
-    if (dots[currentSlide]) dots[currentSlide].classList.add('active');
-}
-
-function sliderNext() {
-    stopSliderAuto();
-    goToSlide(currentSlide + 1);
-    startSliderAuto();
-}
-
-function sliderPrev() {
-    stopSliderAuto();
-    goToSlide(currentSlide - 1);
-    startSliderAuto();
-}
-
-// =====================================================
-// FEATURE 4a: ANIMATE "10 REASONS WHY" CARDS
-// =====================================================
-function animateReasonCards() {
-    const cards = document.querySelectorAll('.reason-card');
-    if (cards.length === 0) return;
-
-    // Reset first
-    cards.forEach(card => {
-        gsap.set(card, { opacity: 0, y: 40, scale: 0.92 });
-    });
-
-    // Stagger each card in
-    cards.forEach((card, i) => {
-        const delay = parseInt(card.dataset.delay || 0) / 1000;
-        gsap.to(card, {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            duration: 0.55,
-            delay: delay + 0.2,
-            ease: 'back.out(1.6)',
-        });
-    });
-
-    // Small confetti burst when all cards are revealed
-    setTimeout(() => {
-        confetti({
-            particleCount: 40,
-            spread: 65,
-            startVelocity: 28,
-            origin: { x: 0.5, y: 0.4 },
-            colors: ['#d81b60', '#f06292', '#f8bbd0', '#ffffff', '#ff4081'],
-            scalar: 0.8,
-            ticks: 160,
-        });
-    }, 1400);
-}
-
-// =====================================================
-// FEATURE 4b: ADVENTURE PANEL (FUTURE DATE PLANNER)
-// =====================================================
-let selectedDateIdea = '';
-
-function openAdventurePanel() {
-    const overlay = document.getElementById('adventureOverlay');
-    const panel = document.getElementById('adventurePanel');
-    const success = document.getElementById('adventureSuccess');
-    const form = document.querySelector('.adventure-form');
-
-    // Reset state
-    if (success) {
-        success.style.display = 'none';
-        success.style.opacity = '1';
-        success.style.transform = 'none';
-    }
-    if (form) {
-        form.style.display = 'flex';
-        form.style.opacity = '1';
-        form.style.transform = 'none';
-    }
-    document.querySelectorAll('.date-idea-card').forEach(c => c.classList.remove('selected'));
-    selectedDateIdea = '';
-
-    // Set min date to today
-    const dateInput = document.getElementById('adventureDateInput');
-    if (dateInput) {
-        const today = new Date().toISOString().split('T')[0];
-        dateInput.setAttribute('min', today);
-    }
-
-    if (overlay) {
-        overlay.style.display = 'block';
-        requestAnimationFrame(() => overlay.classList.add('visible'));
-    }
-    if (panel) {
-        panel.style.display = 'flex';
-        requestAnimationFrame(() => {
-            requestAnimationFrame(() => panel.classList.add('open'));
-        });
-    }
-
-    // Prevent body scroll
-    document.body.style.overflow = 'hidden';
-}
-
-function closeAdventurePanel() {
-    const overlay = document.getElementById('adventureOverlay');
-    const panel = document.getElementById('adventurePanel');
-
-    if (overlay) overlay.classList.remove('visible');
-    if (panel) panel.classList.remove('open');
-
-    setTimeout(() => {
-        if (overlay) overlay.style.display = 'none';
-        if (panel) panel.style.display = 'none';
-        document.body.style.overflow = '';
-    }, 400);
-}
-
-function selectIdea(el) {
-    // Toggle selection
-    document.querySelectorAll('.date-idea-card').forEach(c => c.classList.remove('selected'));
-    el.classList.add('selected');
-    selectedDateIdea = el.querySelector('.date-idea-label').textContent;
-
-    // Tiny bounce
-    gsap.from(el, { scale: 0.88, duration: 0.3, ease: 'back.out(2.5)' });
-}
-
-function sendAdventure() {
-    const dateInput = document.getElementById('adventureDateInput');
-    const msgInput = document.getElementById('adventureMessage');
-    const successEl = document.getElementById('adventureSuccess');
-    const msgText = document.getElementById('adventureSuccessMsg');
-    const form = document.querySelector('.adventure-form');
-
-    // Validation: Require date idea selection
-    if (!selectedDateIdea) {
-        const ideasContainer = document.querySelector('.date-ideas');
-        if (ideasContainer) {
-            gsap.to(ideasContainer, { x: 8, duration: 0.1, yoyo: true, repeat: 5 });
+            // Prevent body scroll
+            document.body.style.overflow = 'hidden';
         }
-        alert("Please choose a date activity! 🌸");
-        return;
-    }
 
-    // Validation: Require a date picker value
-    if (!dateInput || !dateInput.value) {
-        if (dateInput) {
-            gsap.to(dateInput, { x: 8, duration: 0.1, yoyo: true, repeat: 5 });
+        function closeAdventurePanel() {
+            const overlay = document.getElementById('adventureOverlay');
+            const panel = document.getElementById('adventurePanel');
+
+            if (overlay) overlay.classList.remove('visible');
+            if (panel) panel.classList.remove('open');
+
+            setTimeout(() => {
+                if (overlay) overlay.style.display = 'none';
+                if (panel) panel.style.display = 'none';
+                document.body.style.overflow = '';
+            }, 400);
         }
-        alert("Please pick a date for our adventure! 📅");
-        return;
-    }
 
-    // Build a pretty date string
-    let dateStr = 'soon';
-    if (dateInput && dateInput.value) {
-        const d = new Date(dateInput.value + 'T00:00:00');
-        dateStr = d.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-    }
+        function selectIdea(el) {
+            // Toggle selection
+            document.querySelectorAll('.date-idea-card').forEach(c => c.classList.remove('selected'));
+            el.classList.add('selected');
+            selectedDateIdea = el.querySelector('.date-idea-label').textContent;
 
-    const ideaLabel = selectedDateIdea ? `a ${selectedDateIdea}` : 'something magical';
+            // Tiny bounce
+            gsap.from(el, { scale: 0.88, duration: 0.3, ease: 'back.out(2.5)' });
+        }
 
-    // Build success message
-    if (msgText) {
-        msgText.textContent = `${ideaLabel.charAt(0).toUpperCase() + ideaLabel.slice(1)} on ${dateStr} — a promise from my heart to yours! 💫`;
-    }
+        function sendAdventure() {
+            const dateInput = document.getElementById('adventureDateInput');
+            const msgInput = document.getElementById('adventureMessage');
+            const successEl = document.getElementById('adventureSuccess');
+            const msgText = document.getElementById('adventureSuccessMsg');
+            const form = document.querySelector('.adventure-form');
 
-    // Celebrate with hearts confetti
-    confetti({
-        particleCount: 80,
-        spread: 100,
-        startVelocity: 40,
-        origin: { x: 0.5, y: 0.6 },
-        colors: ['#d81b60', '#f06292', '#f8bbd0', '#ff4081', '#ffffff', '#c2185b'],
-        shapes: ['circle'],
-        scalar: 1,
-        ticks: 250,
-    });
+            // Validation: Require date idea selection
+            if (!selectedDateIdea) {
+                const ideasContainer = document.querySelector('.date-ideas');
+                if (ideasContainer) {
+                    gsap.to(ideasContainer, { x: 8, duration: 0.1, yoyo: true, repeat: 5 });
+                }
+                alert("Please choose a date activity! 🌸");
+                return;
+            }
 
-    // Fade out form, slide in success
-    if (form) {
-        gsap.to(form, {
-            opacity: 0, y: -20, duration: 0.4, ease: 'power2.in',
-            onComplete: () => {
-                form.style.display = 'none';
-                if (successEl) {
-                    successEl.style.display = 'flex';
-                    gsap.from(successEl, { opacity: 0, scale: 0.85, duration: 0.55, ease: 'back.out(1.7)' });
+            // Validation: Require a date picker value
+            if (!dateInput || !dateInput.value) {
+                if (dateInput) {
+                    gsap.to(dateInput, { x: 8, duration: 0.1, yoyo: true, repeat: 5 });
+                }
+                alert("Please pick a date for our adventure! 📅");
+                return;
+            }
+
+            // Build a pretty date string
+            let dateStr = 'soon';
+            if (dateInput && dateInput.value) {
+                const d = new Date(dateInput.value + 'T00:00:00');
+                dateStr = d.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+            }
+
+            const ideaLabel = selectedDateIdea ? `a ${selectedDateIdea}` : 'something magical';
+
+            // Build success message
+            if (msgText) {
+                msgText.textContent = `${ideaLabel.charAt(0).toUpperCase() + ideaLabel.slice(1)} on ${dateStr} — a promise from my heart to yours! 💫`;
+            }
+
+            // Celebrate with hearts confetti
+            confetti({
+                particleCount: 80,
+                spread: 100,
+                startVelocity: 40,
+                origin: { x: 0.5, y: 0.6 },
+                colors: ['#d81b60', '#f06292', '#f8bbd0', '#ff4081', '#ffffff', '#c2185b'],
+                shapes: ['circle'],
+                scalar: 1,
+                ticks: 250,
+            });
+
+            // Fade out form, slide in success
+            if (form) {
+                gsap.to(form, {
+                    opacity: 0, y: -20, duration: 0.4, ease: 'power2.in',
+                    onComplete: () => {
+                        form.style.display = 'none';
+                        if (successEl) {
+                            successEl.style.display = 'flex';
+                            gsap.from(successEl, { opacity: 0, scale: 0.85, duration: 0.55, ease: 'back.out(1.7)' });
+                        }
+                    }
+                });
+            }
+        }
+
+        // Close adventure panel on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const panel = document.getElementById('adventurePanel');
+                if (panel && panel.classList.contains('open')) {
+                    closeAdventurePanel();
+                }
+                const letterModal = document.getElementById('letterModal');
+                if (letterModal && letterModal.classList.contains('open')) {
+                    closeLetter();
                 }
             }
         });
-    }
-}
 
-// Close adventure panel on Escape key
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-        const panel = document.getElementById('adventurePanel');
-        if (panel && panel.classList.contains('open')) {
-            closeAdventurePanel();
-        }
-        const letterModal = document.getElementById('letterModal');
-        if (letterModal && letterModal.classList.contains('open')) {
-            closeLetter();
-        }
-    }
-});
-
-// =====================================================
-// FEATURE 6: "OPEN WHEN" DIGITAL LETTERS SYSTEM
-// =====================================================
-const openWhenLetters = {
-    smile: `<h3>Hey there, beautiful...</h3>
+        // =====================================================
+        // FEATURE 6: "OPEN WHEN" DIGITAL LETTERS SYSTEM
+        // =====================================================
+        const openWhenLetters = {
+            smile: `<h3>Hey there, beautiful...</h3>
             <p>If you're reading this, it means you need a little spark today. Well, close your eyes and remember this: <strong>your smile is my absolute favorite thing in the universe.</strong> It has this magical way of lighting up an entire room and making all my worries disappear.</p>
             <p>Here are a few quick things to make you smile:</p>
             <ul>
@@ -1193,428 +1190,428 @@ const openWhenLetters = {
             </ul>
             <p>So take a deep breath, look in the mirror, and show the world that gorgeous smile of yours. You've got this! 😊</p>`,
 
-    miss: `<h3>To the one who holds my heart...</h3>
+            miss: `<h3>To the one who holds my heart...</h3>
            <p>Whenever you're reading this and feeling the distance between us, please know that <strong>distance is just a number.</strong> No matter how many miles separate us, you are in every single heartbeat of mine, in every thought, and in every dream.</p>
            <p>Close your eyes for a second. Take a deep breath. Can you feel that? That's me sending you the warmest, tightest hug. I'm always looking at the same sky as you, and counting down the hours until I can hold you in my arms again. You are my home, and I am always right there with you. 💖</p>`,
 
-    motivation: `<h3>My champion...</h3>
+            motivation: `<h3>My champion...</h3>
                  <p>I know things might feel overwhelming, tiring, or difficult right now. But I need you to pause and listen to me: <strong>you are one of the strongest, most brilliant, and most capable people I have ever met.</strong></p>
                  <p>Look at how much you've already overcome. Look at how hard you work. You have this amazing spark inside you that can conquer anything. Don't let a temporary storm make you forget how bright your sun shines. I believe in you, so, so much. Go out there and show them what you're made of. I'm cheering for you, always! 💪⭐</p>`,
 
-    comfort: `<h3>I'm here for you...</h3>
+            comfort: `<h3>I'm here for you...</h3>
               <p>I'm sorry today is a bad day. I wish I could be there to make it all disappear, to make you tea, and to just sit quietly beside you until the rain stops. But since I can't be there physically, let this letter be a gentle sanctuary.</p>
               <p>It's okay to feel tired. It's okay to feel down. You don't have to be strong all the time. Let yourself rest. Take a warm shower, wrap yourself in a cozy blanket, and let go of today's weights. Tomorrow is a brand new page. I'm sending you all the love and comfort in my soul. You are safe, you are loved, and everything is going to be okay. 🌧️💖</p>`
-};
+        };
 
-let letterTimers = [];
+        let letterTimers = [];
 
-function openLetter(type) {
-    const overlay = document.getElementById('letterOverlay');
-    const modal = document.getElementById('letterModal');
-    const textEl = document.getElementById('letterText');
-    const dateEl = document.getElementById('letterDate');
-    const flap = document.getElementById('envelopeFlap');
-    const wrapper = document.getElementById('envelopeWrapper');
+        function openLetter(type) {
+            const overlay = document.getElementById('letterOverlay');
+            const modal = document.getElementById('letterModal');
+            const textEl = document.getElementById('letterText');
+            const dateEl = document.getElementById('letterDate');
+            const flap = document.getElementById('envelopeFlap');
+            const wrapper = document.getElementById('envelopeWrapper');
 
-    if (!overlay || !modal || !textEl || !flap || !wrapper) return;
+            if (!overlay || !modal || !textEl || !flap || !wrapper) return;
 
-    // Clear any previous animations running
-    letterTimers.forEach(t => clearTimeout(t));
-    letterTimers = [];
+            // Clear any previous animations running
+            letterTimers.forEach(t => clearTimeout(t));
+            letterTimers = [];
 
-    // Populate letter date and text
-    if (dateEl) {
-        const today = new Date();
-        dateEl.textContent = today.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-    }
-    textEl.innerHTML = openWhenLetters[type] || 'A small surprise letter awaits you...';
-
-    // Show modal and overlay
-    overlay.style.display = 'block';
-    modal.style.display = 'flex';
-    document.body.style.overflow = 'hidden';
-
-    // Force repaint
-    modal.offsetHeight;
-
-    // Trigger overlay fade-in and modal scale-up
-    overlay.classList.add('visible');
-    modal.classList.add('open');
-
-    // 1. Open the envelope flap (starts after modal stabilizes)
-    letterTimers.push(setTimeout(() => {
-        flap.classList.add('open');
-    }, 350));
-
-    // 2. Slide the letter sheet out of the envelope
-    letterTimers.push(setTimeout(() => {
-        wrapper.classList.add('open');
-    }, 850));
-}
-
-function closeLetter() {
-    const overlay = document.getElementById('letterOverlay');
-    const modal = document.getElementById('letterModal');
-    const flap = document.getElementById('envelopeFlap');
-    const wrapper = document.getElementById('envelopeWrapper');
-
-    if (!overlay || !modal || !flap || !wrapper) return;
-
-    // Clear active open animations if any
-    letterTimers.forEach(t => clearTimeout(t));
-    letterTimers = [];
-
-    // 1. Slide letter sheet back into envelope
-    wrapper.classList.remove('open');
-
-    // 2. Close envelope flap
-    letterTimers.push(setTimeout(() => {
-        flap.classList.remove('open');
-    }, 300));
-
-    // 3. Fade modal and overlay out
-    letterTimers.push(setTimeout(() => {
-        modal.classList.remove('open');
-        overlay.classList.remove('visible');
-    }, 600));
-
-    // 4. Hide display elements completely
-    letterTimers.push(setTimeout(() => {
-        overlay.style.display = 'none';
-        modal.style.display = 'none';
-        document.body.style.overflow = '';
-    }, 1000));
-}
-
-// =====================================================
-// FEATURE 7: "CANDLE-BLOWING" INTERACTIVE CAKE
-// =====================================================
-let candlesBlown = false;
-let audioContext = null;
-let audioStream = null;
-let analyserNode = null;
-let micMonitoring = false;
-
-function blowOutCandles() {
-    if (candlesBlown) return;
-    candlesBlown = true;
-
-    // 1. Turn off flame visuals and start smoke puffs
-    for (let i = 1; i <= 3; i++) {
-        const flame = document.getElementById(`flame-${i}`);
-        const smoke = document.getElementById(`smoke-${i}`);
-        if (flame) flame.classList.add('blown');
-        if (smoke) smoke.classList.add('puff');
-    }
-
-    // 2. Stop microphone listening
-    stopMicListening();
-
-    // 3. Fire a massive celebratory confetti shower!
-    setTimeout(() => {
-        const colors = ['#ff80ab', '#ff4081', '#d81b60', '#ffeb3b', '#e0f2f1'];
-        confetti({
-            particleCount: 140,
-            spread: 90,
-            origin: { y: 0.75 },
-            colors: colors
-        });
-    }, 200);
-
-    // 4. Staggered GSAP reveal of wishes content
-    const cakeSec = document.getElementById('cakeSection');
-    const wishContent = document.getElementById('wishRevealContent');
-
-    if (cakeSec && wishContent) {
-        gsap.to(cakeSec, {
-            opacity: 0,
-            y: -20,
-            duration: 0.6,
-            ease: 'power2.inOut',
-            onComplete: () => {
-                cakeSec.style.display = 'none';
-
-                // Show wish content container
-                wishContent.style.display = 'flex';
-                wishContent.style.flexDirection = 'column';
-                wishContent.style.alignItems = 'center';
-
-                // Fade in children elements in a beautiful staggered sequence
-                gsap.fromTo(wishContent,
-                    { opacity: 0, y: 30 },
-                    { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' }
-                );
-
-                const children = wishContent.children;
-                gsap.fromTo(children,
-                    { opacity: 0, y: 20 },
-                    { opacity: 1, y: 0, duration: 0.6, stagger: 0.15, ease: 'power2.out' }
-                );
+            // Populate letter date and text
+            if (dateEl) {
+                const today = new Date();
+                dateEl.textContent = today.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
             }
-        });
-    }
-}
+            textEl.innerHTML = openWhenLetters[type] || 'A small surprise letter awaits you...';
 
-async function initMicBlow() {
-    if (candlesBlown || micMonitoring) return;
+            // Show modal and overlay
+            overlay.style.display = 'block';
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
 
-    const micBtn = document.getElementById('micToggleBtn');
-    if (!micBtn) return;
+            // Force repaint
+            modal.offsetHeight;
 
-    try {
-        // Query user microphone media permissions
-        audioStream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
+            // Trigger overlay fade-in and modal scale-up
+            overlay.classList.add('visible');
+            modal.classList.add('open');
 
-        // Setup AudioContext Analyser
-        audioContext = new (window.AudioContext || window.webkitAudioContext)();
-        const source = audioContext.createMediaStreamSource(audioStream);
-        analyserNode = audioContext.createAnalyser();
-        analyserNode.fftSize = 256;
-        source.connect(analyserNode);
+            // 1. Open the envelope flap (starts after modal stabilizes)
+            letterTimers.push(setTimeout(() => {
+                flap.classList.add('open');
+            }, 350));
 
-        micMonitoring = true;
-        micBtn.textContent = '🎙️ Listening... Blow now!';
-        micBtn.classList.add('listening');
-
-        const bufferLength = analyserNode.frequencyBinCount;
-        const dataArray = new Uint8Array(bufferLength);
-
-        // Continuous volume polling loop
-        function checkBlowVolume() {
-            if (!micMonitoring || candlesBlown) return;
-
-            analyserNode.getByteFrequencyData(dataArray);
-
-            // Calculate average audio level in frequency spectrum
-            let sum = 0;
-            for (let i = 0; i < bufferLength; i++) {
-                sum += dataArray[i];
-            }
-            const average = sum / bufferLength;
-
-            // Blow threshold value (higher average indicates blowing/screaming input)
-            if (average > 62) {
-                blowOutCandles();
-                return;
-            }
-
-            requestAnimationFrame(checkBlowVolume);
+            // 2. Slide the letter sheet out of the envelope
+            letterTimers.push(setTimeout(() => {
+                wrapper.classList.add('open');
+            }, 850));
         }
 
-        checkBlowVolume();
-    } catch (err) {
-        console.error('Microphone access denied or unsupported:', err);
-        micBtn.textContent = '❌ Mic Blocked - Tap Cake Instead';
-        micBtn.style.background = 'linear-gradient(135deg, #e53935, #d32f2f)';
+        function closeLetter() {
+            const overlay = document.getElementById('letterOverlay');
+            const modal = document.getElementById('letterModal');
+            const flap = document.getElementById('envelopeFlap');
+            const wrapper = document.getElementById('envelopeWrapper');
 
-        // Shake animation for error feedback
-        gsap.to(micBtn, { x: 10, duration: 0.1, yoyo: true, repeat: 5 });
-    }
-}
+            if (!overlay || !modal || !flap || !wrapper) return;
 
-function stopMicListening() {
-    micMonitoring = false;
-    const micBtn = document.getElementById('micToggleBtn');
-    if (micBtn) {
-        micBtn.classList.remove('listening');
-        micBtn.textContent = '🎂 Candles Extinguished!';
-        micBtn.disabled = true;
-    }
-    if (audioStream) {
-        audioStream.getTracks().forEach(track => track.stop());
-    }
-    if (audioContext) {
-        audioContext.close();
-    }
-}
+            // Clear active open animations if any
+            letterTimers.forEach(t => clearTimeout(t));
+            letterTimers = [];
 
-// =====================================================
-// FEATURE 4: "WHY I LOVE YOU" COUNTER
-// =====================================================
+            // 1. Slide letter sheet back into envelope
+            wrapper.classList.remove('open');
 
-const whyILoveYouReasons = [
-    "Because your laugh is the most beautiful sound I've ever heard — it makes the whole world brighter.",
-    "Because you are kind without even trying. It's just who you are, and it's absolutely magical.",
-    "Because the way your eyes light up when you talk about something you love is my favorite thing in the universe.",
-    "Because you make me want to be a better person just by being in the same room as you.",
-    "Because you are stronger than you know — you carry so much, yet you still manage to shine.",
-    "Because even in the smallest moments, you find a way to make everything feel special.",
-    "Because your smile — that one, the real one — can turn any bad day into the best day.",
-    "Because you are the kind of person people are lucky to know, and I am the luckiest of all.",
-    "Because the way you care about others says everything about the beautiful soul you carry.",
-    "Because you make ordinary days feel like adventures just by being part of them.",
-    "Because you are endlessly patient, warm, and full of a love that is genuinely rare in this world.",
-    "Because your presence alone is enough to calm every storm inside me.",
-    "Because every single version of you — silly, serious, tired, happy — is someone I deeply adore.",
-    "Because you have no idea how incredible you truly are, and that makes you even more incredible.",
-    "Because you exist. That alone is reason enough for my whole world to feel complete."
-];
+            // 2. Close envelope flap
+            letterTimers.push(setTimeout(() => {
+                flap.classList.remove('open');
+            }, 300));
 
-let loveCounterIndex = 0;
-let loveCounterStarted = false;
+            // 3. Fade modal and overlay out
+            letterTimers.push(setTimeout(() => {
+                modal.classList.remove('open');
+                overlay.classList.remove('visible');
+            }, 600));
 
-function initLoveCounter() {
-    const dotsContainer = document.getElementById('loveDots');
-    if (!dotsContainer) return;
-
-    // Build the 15 dots
-    dotsContainer.innerHTML = '';
-    whyILoveYouReasons.forEach((_, i) => {
-        const dot = document.createElement('span');
-        dot.className = 'love-dot';
-        dot.id = `love-dot-${i}`;
-        dotsContainer.appendChild(dot);
-    });
-}
-
-function revealNextReason() {
-    if (loveCounterIndex >= whyILoveYouReasons.length) return;
-
-    const card = document.getElementById('loveReasonCard');
-    const textEl = document.getElementById('loveReasonText');
-    const numberEl = document.getElementById('loveReasonNumber');
-    const sparkles = document.getElementById('loveSparkles');
-    const btn = document.getElementById('loveHeartBtn');
-    const btnText = document.getElementById('loveBtnText');
-    const progress = document.getElementById('loveCounterProgress');
-    const currentNum = document.getElementById('loveCurrentNum');
-    const fillBar = document.getElementById('loveProgressFill');
-    const completeEl = document.getElementById('loveCompleteMsg');
-
-    if (!textEl || !btn) return;
-
-    // First click — show progress bar
-    if (!loveCounterStarted) {
-        loveCounterStarted = true;
-        initLoveCounter();
-        if (progress) progress.style.display = 'block';
-        gsap.from(progress, { opacity: 0, y: 10, duration: 0.4, ease: 'power2.out' });
-    }
-
-    // Heartbeat animation on button
-    btn.classList.remove('beating');
-    void btn.offsetWidth; // reflow to restart
-    btn.classList.add('beating');
-    setTimeout(() => btn.classList.remove('beating'), 450);
-
-    // Sparkle burst
-    sparkles.classList.remove('burst');
-    void sparkles.offsetWidth;
-    sparkles.classList.add('burst');
-    setTimeout(() => sparkles.classList.remove('burst'), 700);
-
-    // Animate card glow
-    card.classList.add('animating');
-    setTimeout(() => card.classList.remove('animating'), 600);
-
-    const reason = whyILoveYouReasons[loveCounterIndex];
-    const reasonNum = loveCounterIndex + 1;
-
-    // --- Text swap with fade ---
-    textEl.classList.add('fade-out');
-
-    setTimeout(() => {
-        // Update content
-        textEl.textContent = reason;
-        numberEl.innerHTML = `<span class="color-emoji">💖</span> Reason #${reasonNum}`;
-
-        // Update counter number
-        if (currentNum) currentNum.textContent = reasonNum;
-
-        // Update progress fill bar
-        const pct = (reasonNum / whyILoveYouReasons.length) * 100;
-        if (fillBar) fillBar.style.width = pct + '%';
-
-        // Update dots
-        for (let i = 0; i < whyILoveYouReasons.length; i++) {
-            const dot = document.getElementById(`love-dot-${i}`);
-            if (!dot) continue;
-            dot.classList.remove('done', 'current');
-            if (i < loveCounterIndex) dot.classList.add('done');
-            else if (i === loveCounterIndex) dot.classList.add('current');
+            // 4. Hide display elements completely
+            letterTimers.push(setTimeout(() => {
+                overlay.style.display = 'none';
+                modal.style.display = 'none';
+                document.body.style.overflow = '';
+            }, 1000));
         }
 
-        // Fade text back in
-        textEl.classList.remove('fade-out');
-        textEl.classList.add('fade-in');
-        setTimeout(() => textEl.classList.remove('fade-in'), 300);
+        // =====================================================
+        // FEATURE 7: "CANDLE-BLOWING" INTERACTIVE CAKE
+        // =====================================================
+        let candlesBlown = false;
+        let audioContext = null;
+        let audioStream = null;
+        let analyserNode = null;
+        let micMonitoring = false;
 
-        loveCounterIndex++;
+        function blowOutCandles() {
+            if (candlesBlown) return;
+            candlesBlown = true;
 
-        // Milestone confetti every 5th reason
-        if (reasonNum % 5 === 0 && reasonNum < whyILoveYouReasons.length) {
-            confetti({
-                particleCount: 55,
-                spread: 75,
-                origin: { y: 0.65 },
-                colors: ['#ff4081', '#f48fb1', '#ffeb3b', '#d81b60', '#fff']
+            // 1. Turn off flame visuals and start smoke puffs
+            for (let i = 1; i <= 3; i++) {
+                const flame = document.getElementById(`flame-${i}`);
+                const smoke = document.getElementById(`smoke-${i}`);
+                if (flame) flame.classList.add('blown');
+                if (smoke) smoke.classList.add('puff');
+            }
+
+            // 2. Stop microphone listening
+            stopMicListening();
+
+            // 3. Fire a massive celebratory confetti shower!
+            setTimeout(() => {
+                const colors = ['#ff80ab', '#ff4081', '#d81b60', '#ffeb3b', '#e0f2f1'];
+                confetti({
+                    particleCount: 140,
+                    spread: 90,
+                    origin: { y: 0.75 },
+                    colors: colors
+                });
+            }, 200);
+
+            // 4. Staggered GSAP reveal of wishes content
+            const cakeSec = document.getElementById('cakeSection');
+            const wishContent = document.getElementById('wishRevealContent');
+
+            if (cakeSec && wishContent) {
+                gsap.to(cakeSec, {
+                    opacity: 0,
+                    y: -20,
+                    duration: 0.6,
+                    ease: 'power2.inOut',
+                    onComplete: () => {
+                        cakeSec.style.display = 'none';
+
+                        // Show wish content container
+                        wishContent.style.display = 'flex';
+                        wishContent.style.flexDirection = 'column';
+                        wishContent.style.alignItems = 'center';
+
+                        // Fade in children elements in a beautiful staggered sequence
+                        gsap.fromTo(wishContent,
+                            { opacity: 0, y: 30 },
+                            { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' }
+                        );
+
+                        const children = wishContent.children;
+                        gsap.fromTo(children,
+                            { opacity: 0, y: 20 },
+                            { opacity: 1, y: 0, duration: 0.6, stagger: 0.15, ease: 'power2.out' }
+                        );
+                    }
+                });
+            }
+        }
+
+        async function initMicBlow() {
+            if (candlesBlown || micMonitoring) return;
+
+            const micBtn = document.getElementById('micToggleBtn');
+            if (!micBtn) return;
+
+            try {
+                // Query user microphone media permissions
+                audioStream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
+
+                // Setup AudioContext Analyser
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const source = audioContext.createMediaStreamSource(audioStream);
+                analyserNode = audioContext.createAnalyser();
+                analyserNode.fftSize = 256;
+                source.connect(analyserNode);
+
+                micMonitoring = true;
+                micBtn.textContent = '🎙️ Listening... Blow now!';
+                micBtn.classList.add('listening');
+
+                const bufferLength = analyserNode.frequencyBinCount;
+                const dataArray = new Uint8Array(bufferLength);
+
+                // Continuous volume polling loop
+                function checkBlowVolume() {
+                    if (!micMonitoring || candlesBlown) return;
+
+                    analyserNode.getByteFrequencyData(dataArray);
+
+                    // Calculate average audio level in frequency spectrum
+                    let sum = 0;
+                    for (let i = 0; i < bufferLength; i++) {
+                        sum += dataArray[i];
+                    }
+                    const average = sum / bufferLength;
+
+                    // Blow threshold value (higher average indicates blowing/screaming input)
+                    if (average > 62) {
+                        blowOutCandles();
+                        return;
+                    }
+
+                    requestAnimationFrame(checkBlowVolume);
+                }
+
+                checkBlowVolume();
+            } catch (err) {
+                console.error('Microphone access denied or unsupported:', err);
+                micBtn.textContent = '❌ Mic Blocked - Tap Cake Instead';
+                micBtn.style.background = 'linear-gradient(135deg, #e53935, #d32f2f)';
+
+                // Shake animation for error feedback
+                gsap.to(micBtn, { x: 10, duration: 0.1, yoyo: true, repeat: 5 });
+            }
+        }
+
+        function stopMicListening() {
+            micMonitoring = false;
+            const micBtn = document.getElementById('micToggleBtn');
+            if (micBtn) {
+                micBtn.classList.remove('listening');
+                micBtn.textContent = '🎂 Candles Extinguished!';
+                micBtn.disabled = true;
+            }
+            if (audioStream) {
+                audioStream.getTracks().forEach(track => track.stop());
+            }
+            if (audioContext) {
+                audioContext.close();
+            }
+        }
+
+        // =====================================================
+        // FEATURE 4: "WHY I LOVE YOU" COUNTER
+        // =====================================================
+
+        const whyILoveYouReasons = [
+            "Because your laugh is the most beautiful sound I've ever heard — it makes the whole world brighter.",
+            "Because you are kind without even trying. It's just who you are, and it's absolutely magical.",
+            "Because the way your eyes light up when you talk about something you love is my favorite thing in the universe.",
+            "Because you make me want to be a better person just by being in the same room as you.",
+            "Because you are stronger than you know — you carry so much, yet you still manage to shine.",
+            "Because even in the smallest moments, you find a way to make everything feel special.",
+            "Because your smile — that one, the real one — can turn any bad day into the best day.",
+            "Because you are the kind of person people are lucky to know, and I am the luckiest of all.",
+            "Because the way you care about others says everything about the beautiful soul you carry.",
+            "Because you make ordinary days feel like adventures just by being part of them.",
+            "Because you are endlessly patient, warm, and full of a love that is genuinely rare in this world.",
+            "Because your presence alone is enough to calm every storm inside me.",
+            "Because every single version of you — silly, serious, tired, happy — is someone I deeply adore.",
+            "Because you have no idea how incredible you truly are, and that makes you even more incredible.",
+            "Because you exist. That alone is reason enough for my whole world to feel complete."
+        ];
+
+        let loveCounterIndex = 0;
+        let loveCounterStarted = false;
+
+        function initLoveCounter() {
+            const dotsContainer = document.getElementById('loveDots');
+            if (!dotsContainer) return;
+
+            // Build the 15 dots
+            dotsContainer.innerHTML = '';
+            whyILoveYouReasons.forEach((_, i) => {
+                const dot = document.createElement('span');
+                dot.className = 'love-dot';
+                dot.id = `love-dot-${i}`;
+                dotsContainer.appendChild(dot);
             });
         }
 
-        // Update button text
-        if (reasonNum < whyILoveYouReasons.length) {
-            btnText.innerHTML = `Next Reason <span class="color-emoji">💕</span>`;
-        }
+        function revealNextReason() {
+            if (loveCounterIndex >= whyILoveYouReasons.length) return;
 
-        // Last reason — celebrate!
-        if (loveCounterIndex >= whyILoveYouReasons.length) {
-            // Mark last dot as done
-            const lastDot = document.getElementById(`love-dot-${loveCounterIndex - 1}`);
-            if (lastDot) { lastDot.classList.remove('current'); lastDot.classList.add('done'); }
+            const card = document.getElementById('loveReasonCard');
+            const textEl = document.getElementById('loveReasonText');
+            const numberEl = document.getElementById('loveReasonNumber');
+            const sparkles = document.getElementById('loveSparkles');
+            const btn = document.getElementById('loveHeartBtn');
+            const btnText = document.getElementById('loveBtnText');
+            const progress = document.getElementById('loveCounterProgress');
+            const currentNum = document.getElementById('loveCurrentNum');
+            const fillBar = document.getElementById('loveProgressFill');
+            const completeEl = document.getElementById('loveCompleteMsg');
 
-            // Hide button after a moment, show completion
+            if (!textEl || !btn) return;
+
+            // First click — show progress bar
+            if (!loveCounterStarted) {
+                loveCounterStarted = true;
+                initLoveCounter();
+                if (progress) progress.style.display = 'block';
+                gsap.from(progress, { opacity: 0, y: 10, duration: 0.4, ease: 'power2.out' });
+            }
+
+            // Heartbeat animation on button
+            btn.classList.remove('beating');
+            void btn.offsetWidth; // reflow to restart
+            btn.classList.add('beating');
+            setTimeout(() => btn.classList.remove('beating'), 450);
+
+            // Sparkle burst
+            sparkles.classList.remove('burst');
+            void sparkles.offsetWidth;
+            sparkles.classList.add('burst');
+            setTimeout(() => sparkles.classList.remove('burst'), 700);
+
+            // Animate card glow
+            card.classList.add('animating');
+            setTimeout(() => card.classList.remove('animating'), 600);
+
+            const reason = whyILoveYouReasons[loveCounterIndex];
+            const reasonNum = loveCounterIndex + 1;
+
+            // --- Text swap with fade ---
+            textEl.classList.add('fade-out');
+
             setTimeout(() => {
-                gsap.to(btn, {
-                    opacity: 0, scale: 0.9, duration: 0.3, ease: 'power2.in',
-                    onComplete: () => {
-                        btn.style.display = 'none';
-                        if (completeEl) {
-                            completeEl.style.display = 'block';
-                            gsap.from(completeEl, { opacity: 0, scale: 0.8, duration: 0.5, ease: 'back.out(2)' });
-                        }
-                    }
-                });
+                // Update content
+                textEl.textContent = reason;
+                numberEl.innerHTML = `<span class="color-emoji">💖</span> Reason #${reasonNum}`;
 
-                // Grand confetti finale
-                confetti({ particleCount: 150, spread: 120, origin: { y: 0.6 }, colors: ['#ff4081', '#d81b60', '#f48fb1', '#ffeb3b', '#fff'] });
-                setTimeout(() => confetti({ particleCount: 80, spread: 100, origin: { x: 0.1, y: 0.7 }, colors: ['#ff80ab', '#ffeb3b', '#ff4081'] }), 300);
-                setTimeout(() => confetti({ particleCount: 80, spread: 100, origin: { x: 0.9, y: 0.7 }, colors: ['#d81b60', '#f48fb1', '#fff'] }), 600);
-            }, 600);
+                // Update counter number
+                if (currentNum) currentNum.textContent = reasonNum;
+
+                // Update progress fill bar
+                const pct = (reasonNum / whyILoveYouReasons.length) * 100;
+                if (fillBar) fillBar.style.width = pct + '%';
+
+                // Update dots
+                for (let i = 0; i < whyILoveYouReasons.length; i++) {
+                    const dot = document.getElementById(`love-dot-${i}`);
+                    if (!dot) continue;
+                    dot.classList.remove('done', 'current');
+                    if (i < loveCounterIndex) dot.classList.add('done');
+                    else if (i === loveCounterIndex) dot.classList.add('current');
+                }
+
+                // Fade text back in
+                textEl.classList.remove('fade-out');
+                textEl.classList.add('fade-in');
+                setTimeout(() => textEl.classList.remove('fade-in'), 300);
+
+                loveCounterIndex++;
+
+                // Milestone confetti every 5th reason
+                if (reasonNum % 5 === 0 && reasonNum < whyILoveYouReasons.length) {
+                    confetti({
+                        particleCount: 55,
+                        spread: 75,
+                        origin: { y: 0.65 },
+                        colors: ['#ff4081', '#f48fb1', '#ffeb3b', '#d81b60', '#fff']
+                    });
+                }
+
+                // Update button text
+                if (reasonNum < whyILoveYouReasons.length) {
+                    btnText.innerHTML = `Next Reason <span class="color-emoji">💕</span>`;
+                }
+
+                // Last reason — celebrate!
+                if (loveCounterIndex >= whyILoveYouReasons.length) {
+                    // Mark last dot as done
+                    const lastDot = document.getElementById(`love-dot-${loveCounterIndex - 1}`);
+                    if (lastDot) { lastDot.classList.remove('current'); lastDot.classList.add('done'); }
+
+                    // Hide button after a moment, show completion
+                    setTimeout(() => {
+                        gsap.to(btn, {
+                            opacity: 0, scale: 0.9, duration: 0.3, ease: 'power2.in',
+                            onComplete: () => {
+                                btn.style.display = 'none';
+                                if (completeEl) {
+                                    completeEl.style.display = 'block';
+                                    gsap.from(completeEl, { opacity: 0, scale: 0.8, duration: 0.5, ease: 'back.out(2)' });
+                                }
+                            }
+                        });
+
+                        // Grand confetti finale
+                        confetti({ particleCount: 150, spread: 120, origin: { y: 0.6 }, colors: ['#ff4081', '#d81b60', '#f48fb1', '#ffeb3b', '#fff'] });
+                        setTimeout(() => confetti({ particleCount: 80, spread: 100, origin: { x: 0.1, y: 0.7 }, colors: ['#ff80ab', '#ffeb3b', '#ff4081'] }), 300);
+                        setTimeout(() => confetti({ particleCount: 80, spread: 100, origin: { x: 0.9, y: 0.7 }, colors: ['#d81b60', '#f48fb1', '#fff'] }), 600);
+                    }, 600);
+                }
+
+            }, 260);
         }
 
-    }, 260);
-}
+        function restartLoveCounter() {
+            loveCounterIndex = 0;
+            loveCounterStarted = false;
 
-function restartLoveCounter() {
-    loveCounterIndex = 0;
-    loveCounterStarted = false;
+            const textEl = document.getElementById('loveReasonText');
+            const numberEl = document.getElementById('loveReasonNumber');
+            const btn = document.getElementById('loveHeartBtn');
+            const btnText = document.getElementById('loveBtnText');
+            const currentNum = document.getElementById('loveCurrentNum');
+            const fillBar = document.getElementById('loveProgressFill');
+            const completeEl = document.getElementById('loveCompleteMsg');
+            const progress = document.getElementById('loveCounterProgress');
 
-    const textEl = document.getElementById('loveReasonText');
-    const numberEl = document.getElementById('loveReasonNumber');
-    const btn = document.getElementById('loveHeartBtn');
-    const btnText = document.getElementById('loveBtnText');
-    const currentNum = document.getElementById('loveCurrentNum');
-    const fillBar = document.getElementById('loveProgressFill');
-    const completeEl = document.getElementById('loveCompleteMsg');
-    const progress = document.getElementById('loveCounterProgress');
+            if (textEl) textEl.textContent = 'Press the heart to discover why I love you...';
+            if (numberEl) numberEl.innerHTML = '<span class="color-emoji">💖</span>';
+            if (currentNum) currentNum.textContent = '0';
+            if (fillBar) fillBar.style.width = '0%';
+            if (completeEl) completeEl.style.display = 'none';
+            if (progress) progress.style.display = 'none';
 
-    if (textEl) textEl.textContent = 'Press the heart to discover why I love you...';
-    if (numberEl) numberEl.innerHTML = '<span class="color-emoji">💖</span>';
-    if (currentNum) currentNum.textContent = '0';
-    if (fillBar) fillBar.style.width = '0%';
-    if (completeEl) completeEl.style.display = 'none';
-    if (progress) progress.style.display = 'none';
+            // Clear all dots
+            const dots = document.querySelectorAll('.love-dot');
+            dots.forEach(d => d.classList.remove('done', 'current'));
 
-    // Clear all dots
-    const dots = document.querySelectorAll('.love-dot');
-    dots.forEach(d => d.classList.remove('done', 'current'));
-
-    if (btn) {
-        btn.style.display = '';
-        btn.style.opacity = '1';
-        btn.style.transform = '';
-        gsap.from(btn, { opacity: 0, scale: 0.85, duration: 0.45, ease: 'back.out(2)' });
-    }
-    if (btnText) btnText.innerHTML = 'Reveal a Reason <span class="color-emoji">✨</span>';
-}
+            if (btn) {
+                btn.style.display = '';
+                btn.style.opacity = '1';
+                btn.style.transform = '';
+                gsap.from(btn, { opacity: 0, scale: 0.85, duration: 0.45, ease: 'back.out(2)' });
+            }
+            if (btnText) btnText.innerHTML = 'Reveal a Reason <span class="color-emoji">✨</span>';
+        }
 
